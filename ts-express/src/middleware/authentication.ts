@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
-import configuration from '../routes/config/configuration'
+import configuration from '../config/configuration'
 import jwt from 'jsonwebtoken'
 import JwtPayloadType from '../utils/jwtpayload.type'
 
