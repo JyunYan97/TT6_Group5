@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken'
 import { AuthFail, AuthSuccess } from './auth.model'
 import JwtPayloadType from '../../utils/jwtpayload.type'
 import { uuid } from 'uuidv4'
-import configuration from '../config/configuration'
+import configuration from '../../config/configuration'
 
 const login = async (
   username: string,
