@@ -1,11 +1,27 @@
 from flask import render_template, jsonify
 from flask_restful import Resource, request
 from flask_jwt_extended import jwt_required
+from marshmallow import Schema, ValidationError, fields
 from db import db
 
 # Accessing Collections
 transaction_col = db['transaction']
+# datetime_format = "%Y-%m-%d %H:%M:%S"
 
+class InsertSchema(Schema):
+    debit_id = fields.Int(required=True)
+    debit_currency = fields.Str(required=True)
+    debit_amount = fields.Int(required=True)
+    credit_id = fields.Int(required=True)
+    credit_currency = fields.Str(required=True)
+    credit_amount = fields.Int(required=True)
+    description = fields.Str(default="")
+    created_at = fields.Str()
+    created_by = fields.Str(default="")
+    updated_at = fields.Str()
+    updated_by = fields.Str(default="")
+
+    
 class Transaction(Resource):
     
     def get(self, wallet_id):
@@ -21,7 +37,7 @@ class Transaction(Resource):
     # @jwt_required()
     def post(self, wallet_id):
 
-        data = request.get_json()
+        data = InsertSchema().load(request.get_json())
 
         transaction_col.insert_one({"wallet_id": wallet_id,
                                     "debit_id": data["debit_id"],

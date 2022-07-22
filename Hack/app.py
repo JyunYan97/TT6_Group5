@@ -27,7 +27,7 @@ def login():
             access_token = create_access_token(identity=username)
             return jsonify(access_token=access_token)
     
-    return {'message': "Invalid username or password!"}, 401
+    return {'message': "Invalid username or password!"}, 400
     
 
 @app.route("/protected", methods=["GET"])
