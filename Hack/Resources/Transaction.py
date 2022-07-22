@@ -6,7 +6,6 @@ from db import db
 
 # Accessing Collections
 transaction_col = db['transaction']
-# datetime_format = "%Y-%m-%d %H:%M:%S"
 
 class InsertSchema(Schema):
     debit_id = fields.Int(required=True)
