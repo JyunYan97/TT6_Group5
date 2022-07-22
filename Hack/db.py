@@ -1,8 +1,8 @@
 import pymongo
 
 # MONGODB
-connection_string = "mongodb://127.0.0.1:27017"
+connection_string = "mongodb+srv://JunYan97:Abc123@application.uod6451.mongodb.net/?retryWrites=true&w=majority"
 
 mongo_client = pymongo.MongoClient(connection_string, serverSelectionTimeoutMS=5000)
 
-db = mongo_client['']
+db = mongo_client['Application']
