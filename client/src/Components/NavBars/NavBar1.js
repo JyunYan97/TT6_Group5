@@ -30,10 +30,16 @@ function NavBar1() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
+<<<<<<< HEAD
+            <Nav.Link href="/wallets">Wallets</Nav.Link>
+            <Nav.Link href="/about">About</Nav.Link>
+            <Nav.Link href="/contact">Contact</Nav.Link>
+=======
             <Nav.Link href="/about">About</Nav.Link>
             <Nav.Link href="/contact">Contact</Nav.Link>
             <Nav.Link href="/products">Products</Nav.Link>
             <Nav.Link href="/extra">Extra</Nav.Link>
+>>>>>>> master
             <NavDropdown title="Extra2" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
