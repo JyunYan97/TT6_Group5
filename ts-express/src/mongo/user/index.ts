@@ -1,12 +1,23 @@
 import { Schema, model, Model } from 'mongoose'
+import { uuid } from 'uuidv4'
 import { UserDocument } from './user.model'
 
 const userSchema = new Schema({
-  email: {
+  userId: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  hashedPassword: {
     type: String,
     required: true,
   },
-  hashedPassword: {
+  name: {
     type: String,
     required: true,
   },
