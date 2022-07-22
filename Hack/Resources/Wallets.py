@@ -14,8 +14,9 @@ class Wallets(Resource):
 
         wallet_list = list(wallet_col.aggregate([{"$project": {"_id": 0}}, {"$sort": {"wallet_id": 1}}]))
         exchange_list = list(ER_col.aggregate([{"$project": {"_id": 0}}, {"$sort": {"id": 1}}]))
+        main = [wallet_list, exchange_list]
 
-        return exchange_list
+        return main
 
 
     @jwt_required()
@@ -30,4 +31,13 @@ class Wallets(Resource):
 
  
 
-    
+
+    @jwt_required()
+    def delete(self, wallet_id):
+
+        try:
+            wallet_col.delete_one({'wallet_id': wallet_id})
+            currency_col.delete_many({'wallet_id': wallet_id})
+            return {'message': "Item deleted"}
+        except:
+            return {'message': "Item cannot be found"}, 404
