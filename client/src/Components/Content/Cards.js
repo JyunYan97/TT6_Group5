@@ -19,12 +19,12 @@ function Cards() {
 
   const [ cardState, setCardState ] = useState(true)
 
+  const [ wallet, setWallet ] = useState(100)
+
   
-  
-  let wallet = 100
   
 
-  const submitHandler = () => {
+  const submitHandler = (e) => {
     setIsState(true)
     if (chosenCur === "CAD") {
     setAmt(amt * 0.9225)
@@ -51,6 +51,9 @@ function Cards() {
     } else {
     console.log('something is wrong')
     }
+
+    setWallet(100-amt)
+    e.preventDefault()
     }
   
     return (
@@ -58,7 +61,7 @@ function Cards() {
       { cardState ? (
       <Card style={{ width: '18rem'}}>
       <Card.Body>
-      <Card.Title>Wallet=100</Card.Title>
+      <Card.Title>Wallet={wallet}</Card.Title>
       <Card.Text>
       <Form onSubmit={submitHandler}>
       <select onChange={e=>setChosenCur(e.target.value)}>
