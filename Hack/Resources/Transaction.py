@@ -15,11 +15,11 @@ class InsertSchema(Schema):
     credit_id = fields.Int(required=True)
     credit_currency = fields.Str(required=True)
     credit_amount = fields.Float(required=True)
-    description = fields.Str(default="")
+    description = fields.Str(dump_default="")
     created_at = fields.Str()
-    created_by = fields.Str(default="")
+    created_by = fields.Str(dump_default="")
     updated_at = fields.Str()
-    updated_by = fields.Str(default="")
+    updated_by = fields.Str(dump_default="")
 
     
 class Transaction(Resource):
@@ -34,12 +34,15 @@ class Transaction(Resource):
             return {'message': "Item cannot be found"}, 404
 
 
-    # @jwt_required()
+    @jwt_required()
     def post(self, wallet_id):
 
         data = InsertSchema().load(request.get_json())
+        last_id = len(list(transaction_col.find({})))
 
-        transaction_col.insert_one({"wallet_id": wallet_id,
+
+        transaction_col.insert_one({"id": last_id+1,
+                                    "wallet_id": wallet_id,
                                     "debit_id": data["debit_id"],
                                     "debit_currency": data["debit_currency"],  
                                     "debit_amount": data["debit_amount"],
