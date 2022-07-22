@@ -12,9 +12,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './Pages/HomePage'
 import About from './Pages/AboutPage'
 import Contact from './Pages/ContactPage'
-import Products from './Pages/ProductsPage'
-import Extra from './Pages/ExtraPage'
-import Extra2 from './Pages/Extra2Page'
+import Wallets from './Pages/WalletsPage'
 import Error from './Pages/ErrorPage'
 import Login from './Pages/LoginPage'
 
@@ -27,9 +25,7 @@ function App() {
         <Route path="/" element={<Home />}/>
         <Route path="/about" element={<About />}/>
         <Route path="/contact" element={<Contact />}/>
-        <Route path="/products" element={<Products />}/>
-        <Route path="/extra" element={<Extra />}/>
-        <Route path="/extra2" element={<Extra2 />}/>
+        <Route path="/wallets" element={<Wallets />}/>
         <Route path="/login" element={<Login />}/>
         <Route path="*" element={<Error />}/>
       </Routes>

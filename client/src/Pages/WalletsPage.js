@@ -2,14 +2,14 @@ import React from 'react'
 import CardContainer from '../Components/Content/CardContainer'
 import NavBar1 from '../Components/NavBars/NavBar1'
 
-const Products = () => {
+const Wallets = () => {
   return (
     <div>
         <NavBar1 />
-        <h1 style={{padding:'1rem'}}>Products</h1>
+        <h1 style={{padding:'1rem'}}>Wallets</h1>
         <CardContainer />
     </div>
   )
 }
 
-export default Products
+export default Wallets
