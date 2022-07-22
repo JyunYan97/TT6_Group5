@@ -24,3 +24,7 @@ Upon clicking on the respective wallets, the dropdown below will be shown.
 <img width="319" alt="image" src="https://user-images.githubusercontent.com/72810917/180390784-a48f0c71-8958-4cf8-ba6c-8f7d6f44f4cf.png">
 
 <b>Improvements that can be made:</b>
+
+- Time management
+- Integration 
+- Less hardcoding
