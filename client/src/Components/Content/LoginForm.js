@@ -34,7 +34,49 @@ const LoginForm = () => {
         
     }    
   }
+//axios front end 
+/* try {
+            const response = await axios.post(LOGIN_URL,
+                JSON.stringify({ user, password }),
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true
+                }
+            );
 
+           
+            console.log(response.data);
+            
+           
+            setAuth({ user, password});
+            setUser('');
+            setPassword('');
+            setSuccess(true);
+            setLoggedInState(true)
+        } catch (err) {
+            if (!err?.response) {
+                alert('Wrong details!')
+                console.log(false)
+                setLoggedInState(false)
+                setErrMsg('No Server Response');
+            } else if (err.response?.status === 400) {
+                alert('Wrong details!')
+                console.log(false)
+                setLoggedInState(false)
+                setErrMsg('Missing Username or Password');
+            } else if (err.response?.status === 401) {
+                alert('Wrong details!')
+                console.log(false)
+                setLoggedInState(false)
+                setErrMsg('Unauthorized');
+            } else {
+                setErrMsg('Login Failed');
+                alert('Wrong details!')
+                console.log(false)
+                setLoggedInState(false)
+            }
+            errRef.current.focus();
+        } */
   return (
     <>
         {loggedInState ? (
