@@ -5,6 +5,10 @@ from flask_restful import Api
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
 
 from Resources.Wallets import Wallets
+from Resources.Transaction import Transaction
+from Resources.Currency import Currency
+from Resources.user import user_col
+from db import db
 
 # FLASK
 app = Flask(__name__)
@@ -19,11 +23,13 @@ jwt = JWTManager(app)
 def login():
     username = request.json.get("username", None)
     password = request.json.get("password", None)
-    if username != os.environ.get("user") or password != os.environ.get("pw"):
-        return jsonify({"msg": "Invalid username or password!"}), 401
+    for user in user_col.find():
+        if username == user['username'] and password == user['password']:
+            access_token = create_access_token(identity=username)
+            return jsonify(access_token=access_token)
     
-    access_token = create_access_token(identity=username)
-    return jsonify(access_token=access_token)
+    return {'message': "Invalid username or password!"}, 401
+    
 
 @app.route("/protected", methods=["GET"])
 @jwt_required()
@@ -31,10 +37,10 @@ def protected():
     current_user = get_jwt_identity()
     return jsonify(logged_in_as=current_user), 200
 
+
 api.add_resource(Wallets, '/wallets')
-# api.add_resource(Wallets, '/wallet/')
-# api.add_resource(Currency, '/currency')
-# api.add_resource(Transaction, '/wallet/<string:name>/transaction')
+api.add_resource(Currency, '/wallet/<int:wallet_id>/currency')
+api.add_resource(Transaction, '/wallet/<int:wallet_id>/transaction')
 
 # runs flask API
 if __name__ == '__main__':

@@ -11,17 +11,17 @@ class Wallets(Resource):
     
     def get(self):
 
-        wallet_list = list(wallet_col.aggregate([{"$project": {"_id": 0}}, {"$sort": {"Name": 1}}]))
-        currency_list = list(ER_col.aggregate([{"$project": {"_id": 0}}, {"$sort": {"Name": 1}}]))
+        wallet_list = list(wallet_col.aggregate([{"$project": {"_id": 0}}, {"$sort": {"wallet_id": 1}}]))
+        exchange_list = list(ER_col.aggregate([{"$project": {"_id": 0}}, {"$sort": {"id": 1}}]))
 
         return wallet_list
 
 
     @jwt_required()
-    def delete(self, name):
+    def delete(self, wallet_id):
 
         try:
-            wallet_col.delete_one({'Name': name})
+            wallet_col.delete_one({'wallet_id': wallet_id})
             return {'message': "Item deleted"}
         except:
             return {'message': "Item cannot be found"}, 404
