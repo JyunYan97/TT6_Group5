@@ -28,3 +28,16 @@ class Wallets(Resource):
             return {'message': "Item deleted"}
         except:
             return {'message': "Item cannot be found"}, 404
+
+ 
+
+
+    @jwt_required()
+    def delete(self, wallet_id):
+
+        try:
+            wallet_col.delete_one({'wallet_id': wallet_id})
+            currency_col.delete_many({'wallet_id': wallet_id})
+            return {'message': "Item deleted"}
+        except:
+            return {'message': "Item cannot be found"}, 404
