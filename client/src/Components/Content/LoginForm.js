@@ -6,10 +6,16 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { users } from './data'
 import { useNavigate } from 'react-router-dom';
+import axios from '../../axiosAuth/api/axios'; 
 
 const LoginForm = () => {
 
   const [loggedInState, setLoggedInState] = useState(false)
+  const LOGIN_URL = '/api/auth/login'
+  const [user, setUser] = useState('');
+  const [password, setPassword] = useState('');
+  const [errMsg, setErrMsg] = useState('');
+  const [success, setSuccess] = useState(false);
 
   let navigate = useNavigate()
 
