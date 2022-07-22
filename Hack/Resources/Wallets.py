@@ -10,6 +10,7 @@ currency_col = db['currency']
 
 class Wallets(Resource):
     
+    @jwt_required()
     def get(self):
 
         wallet_list = list(wallet_col.aggregate([{"$project": {"_id": 0}}, {"$sort": {"wallet_id": 1}}]))

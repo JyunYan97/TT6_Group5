@@ -23,6 +23,7 @@ class InsertSchema(Schema):
     
 class Transaction(Resource):
     
+    @jwt_required()
     def get(self, wallet_id):
 
         transaction_list = transaction_col.find({"wallet_id": wallet_id}, {'_id': 0})
