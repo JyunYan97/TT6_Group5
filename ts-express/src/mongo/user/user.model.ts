@@ -1,4 +1,6 @@
 export type UserDocument = {
-  email: string
+  userId: string
+  username: string
   hashedPassword: string
+  name: string
 }

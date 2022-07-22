@@ -1,6 +1,7 @@
 import mongoose, { Mongoose } from 'mongoose'
 import dotenv from 'dotenv'
 import { userModel } from './user'
+import { walletModel } from './wallet'
 
 dotenv.config()
 
@@ -11,6 +12,6 @@ const connectDb: () => Promise<Mongoose> = () => {
 }
 
 // import model dependencies and put them inside here
-export const models = { userModel }
+export const models = { userModel, walletModel }
 
 export { connectDb }

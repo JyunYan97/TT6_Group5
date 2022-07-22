@@ -2,13 +2,16 @@ import { userModel } from '../../mongo/user'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { AuthFail, AuthSuccess } from './auth.model'
+import JwtPayloadType from '../../utils/jwtpayload.type'
+import { uuid } from 'uuidv4'
+import configuration from '../config/configuration'
 
 const login = async (
-  email: string,
+  username: string,
   password: string
 ): Promise<AuthSuccess | AuthFail> => {
   try {
-    const existingUser = await userModel.findOne({ email })
+    const existingUser = await userModel.findOne({ username })
 
     if (!existingUser)
       return { success: false, message: 'Email does not exist in DB' }
@@ -19,8 +22,8 @@ const login = async (
     )
     if (!validPassword) return { success: false, message: 'Password incorrect' }
 
-    const tokenPayload = { id: existingUser._id }
-    const token = jwt.sign(tokenPayload, process.env.secretKey || 'secret', {
+    const tokenPayload: JwtPayloadType = { userId: existingUser.userId }
+    const token = jwt.sign(tokenPayload, configuration().secretKey, {
       expiresIn: '7d',
     })
     return { success: true, authToken: token }
@@ -32,26 +35,27 @@ const login = async (
 }
 
 const register = async (
-  email: string,
-  password: string
+  username: string,
+  password: string,
+  name: string
 ): Promise<AuthSuccess | AuthFail> => {
   try {
-    const existingUser = await userModel.findOne({ email })
-
+    const existingUser = await userModel.findOne({ username })
+    console.log(existingUser)
     if (existingUser) return { success: false, message: 'Email already exist' }
 
     const salt = await bcrypt.genSalt(10)
     const hashedPassword = await bcrypt.hash(password, salt)
-    console.log(hashedPassword)
-
     const newUser = await userModel.create({
-      email,
+      userId: uuid(),
+      username,
       hashedPassword,
+      name,
     })
     console.log(newUser)
 
-    const tokenPayload = { id: newUser._id }
-    const token = jwt.sign(tokenPayload, process.env.secretKey || 'secret', {
+    const tokenPayload: JwtPayloadType = { userId: newUser.userId }
+    const token = jwt.sign(tokenPayload, configuration().secretKey, {
       expiresIn: '7d',
     })
     return { success: true, authToken: token }
