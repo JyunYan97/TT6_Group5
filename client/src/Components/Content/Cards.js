@@ -16,11 +16,14 @@ function Cards() {
   const [ amt, setAmt ] = useState(0)
 
   const [ isState, setIsState ] = useState(false)
+
+  const [ cardState, setCardState ] = useState(true)
+
+  
   
   let wallet = 100
   
-  let tableResult = 0
-  var output = 0
+
   const submitHandler = () => {
     setIsState(true)
     if (chosenCur === "CAD") {
@@ -50,104 +53,54 @@ function Cards() {
     }
     }
   
-  return (
-  <Card style={{ width: '18rem'}}>
-  
-  <Card.Body>
-  <Card.Title>Wallet = {wallet}</Card.Title>
-  <Card.Text>
-  <Form onSubmit={submitHandler}>
-  <select onChange={e=>setChosenCur(e.target.value)}>
-  {currency.map(money=><option>{money}</option>)} 
-  </select>
-  <Form.Group>
-  <label htmlFor="Amount">Amount</label>
-  <input name="Amount" value={amt} type="number" onChange={e=>setAmt(e.target.value)}/>
-  </Form.Group>
-  </Form>
-  <Button type="submit" variant="danger" onClick={submitHandler}>convert</Button>
-  { isState ? (
- <Table striped bordered hover>
- <thead>
- <tr>
- <th>Currency</th>
- <th>Amount</th>
- </tr>
- </thead>
- <tbody>
- <tr>
- <td>{chosenCur}</td>
- <td>{amt}</td>
- </tr> 
- </tbody>
- </Table>
- ) : (
- <p></p>
- )}
- <div>
-  {output}
- </div>
-  </Card.Text>
-        
-        {/* <Table striped bordered hover>
-        <p>yes</p>
-        <thead>
-        <tr>
-        <th>Currency</th>
-        <th>Amount</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-        <td>CAD</td>
-        <td>smth</td>
-        </tr>
-        <tr>
-        <td>CNH</td>
-        <td>smth</td>
-        </tr>
-        <tr>
-        <td>EUR</td>
-        <td>smth</td>
-        </tr>
-        <tr>
-        <td>HKD</td>
-        <td>smth</td>
-        </tr>
-        <tr>
-        <td>JPY</td>
-        <td>smth</td>
-        </tr>
-        <tr>
-        <td>NZD</td>
-        <td>smth</td>
-        </tr>
-        <tr>
-        <td>NOK</td>
-        <td>smth</td>
-        </tr>
-        <tr>
-        <td>GBP</td>
-        <td>smth</td>
-        </tr>
-        <tr>
-        <td>SEK</td>
-        <td>smth</td>
-        </tr>
-        <tr>
-        <td>THB</td>
-        <td>smth</td>
-        </tr>
-        <tr>
-        <td>USD</td>
-        <td>smth</td>
-        </tr>
-        </tbody>
-        </Table> */}
-        <Button variant="dark">Delete</Button>
+    return (
+      <>
+      { cardState ? (
+      <Card style={{ width: '18rem'}}>
+      <Card.Body>
+      <Card.Title>Wallet=100</Card.Title>
+      <Card.Text>
+      <Form onSubmit={submitHandler}>
+      <select onChange={e=>setChosenCur(e.target.value)}>
+      {currency.map(money=><option>{money}</option>)} 
+      </select>
+      <Form.Group>
+      <label htmlFor="Amount">Amount</label>
+      <input name="Amount" value={amt} type="number" onChange={e=>setAmt(e.target.value)}/>
+      </Form.Group>
+      <Button type="submit" variant="danger" >convert</Button>
+      </Form>
+      
+      </Card.Text>
+      <Button type="delete" variant="dark" onClick={()=>setCardState(false)}>Delete</Button>
+      { isState ? (
+      <Table striped bordered hover>
+      <thead>
+      <tr>
+      <th>Currency</th>
+      <th>Amount</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>{chosenCur}</td>
+      <td>{amt}</td>
+      </tr> 
+      </tbody>
+      </Table>
+      ) : (
+      <p></p>
+      )}
       </Card.Body>
-    </Card>
-  );
+      </Card> 
+      ) : (
+      <></>
+      )}
+      
+      
+      </>
+      
+      );
 }
 
 export default Cards;
