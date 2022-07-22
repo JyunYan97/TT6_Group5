@@ -39,8 +39,8 @@ def protected():
 
 
 api.add_resource(Wallets, '/wallets')
-api.add_resource(Currency, '/wallet/<int:wallet_id>/currency')
-api.add_resource(Transaction, '/wallet/<int:wallet_id>/transaction')
+api.add_resource(Currency, '/wallets/<int:wallet_id>/currency')
+api.add_resource(Transaction, '/wallets/<int:wallet_id>/transaction')
 
 # runs flask API
 if __name__ == '__main__':

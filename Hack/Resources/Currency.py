@@ -10,16 +10,19 @@ class Currency(Resource):
     
     def get(self, wallet_id):
 
-        transaction_list = list(currency_col.aggregate([{"$project": {"_id": 0}}, {"$sort": {"wallet_id": 1}}]))
+        currency_list = currency_col.find({"wallet_id": wallet_id}, {'_id': 0})
 
-        return transaction_list
+        if currency_list is not None:
+            return list(currency_list.sort("id", 1))
+        else:
+            return {'message': "Item cannot be found"}, 404
 
 
     @jwt_required()
-    def delete(self, name):
+    def delete(self, wallet_id):
 
         try:
-            currency_col.delete_one({'Name': name})
+            currency_col.delete_many({'wallet_id': wallet_id})
             return {'message': "Item deleted"}
         except:
             return {'message': "Item cannot be found"}, 404
