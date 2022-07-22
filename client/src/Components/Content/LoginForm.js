@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useContext } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -6,6 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { users } from './data'
 import { useNavigate } from 'react-router-dom';
+<<<<<<< HEAD
 import axios from '../../axiosAuth/api/axios'; 
 import AuthContext from '../../axiosAuth/context/AuthProvider'; 
 
@@ -72,12 +74,14 @@ const LoginForm = () => {
             errRef.current.focus();
         }
     
+
   }
 
   return (
     <>
         {loggedInState ? (
             navigate('/wallets')
+
         ) : (
             <Container style={{paddingTop:'1rem'}}>
                 <Form onSubmit={submitHandler}>
@@ -89,6 +93,7 @@ const LoginForm = () => {
                             <Form.Control type="text" placeholder="Enter Username" name="username" required/>
                             <Form.Text className="text-muted">
                                 We'll never share your username with anyone else.
+
                             </Form.Text>
                             </Form.Group>
                         </Col>

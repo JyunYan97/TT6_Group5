@@ -1,9 +1,4 @@
 export const users = [
-    {name: 'tom@test.com', password: 'jerry'},
-    {name: 'bunny@test.com', password: 'duck'}
-  ]
-
-  [
     {
       "id": 1,
       "username": "user101",
@@ -34,4 +29,4 @@ export const users = [
       "password": "123456",
       "name": "Mark"
     }
-  ]
+  ] 

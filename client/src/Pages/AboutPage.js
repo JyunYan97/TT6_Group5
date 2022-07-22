@@ -5,6 +5,7 @@ const About = () => {
   return (
     <div>
         <NavBar1 />
+<<<<<<< HEAD
         <div className="members">
 
           <h1>Team Members:</h1>
@@ -21,6 +22,9 @@ const About = () => {
         </div>
 
 
+=======
+        <h1>This is a DBS template</h1>
+>>>>>>> master
     </div>
   )
 }
