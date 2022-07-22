@@ -12,9 +12,9 @@ const login = async (
 ): Promise<AuthSuccess | AuthFail> => {
   try {
     const existingUser = await userModel.findOne({ username })
-
+    console.log(existingUser)
     if (!existingUser)
-      return { success: false, message: 'Email does not exist in DB' }
+      return { success: false, message: 'username does not exist in DB' }
 
     const validPassword = await bcrypt.compare(
       password,
@@ -42,7 +42,8 @@ const register = async (
   try {
     const existingUser = await userModel.findOne({ username })
     console.log(existingUser)
-    if (existingUser) return { success: false, message: 'Email already exist' }
+    if (existingUser)
+      return { success: false, message: 'username already exist' }
 
     const salt = await bcrypt.genSalt(10)
     const hashedPassword = await bcrypt.hash(password, salt)
