@@ -10,7 +10,7 @@ const Products = () => {
   return (
     <div>
         <NavBar1 />
-        <h1 style={{padding:'1rem'}}>Products</h1>
+        <h1 style={{padding:'1rem'}}>Wallets</h1>
         <Container>
         <Row>
         <Col><CardContainer /></Col>
