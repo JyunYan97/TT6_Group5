@@ -1,7 +1,7 @@
 from flask import render_template, jsonify
 from flask_restful import Resource, request
 from flask_jwt_extended import jwt_required
-from marshmallow import Schema, ValidationError, fields
+from marshmallow import Schema, fields
 from db import db
 
 # Accessing Collections
@@ -11,10 +11,10 @@ transaction_col = db['transaction']
 class InsertSchema(Schema):
     debit_id = fields.Int(required=True)
     debit_currency = fields.Str(required=True)
-    debit_amount = fields.Int(required=True)
+    debit_amount = fields.Float(required=True)
     credit_id = fields.Int(required=True)
     credit_currency = fields.Str(required=True)
-    credit_amount = fields.Int(required=True)
+    credit_amount = fields.Float(required=True)
     description = fields.Str(default="")
     created_at = fields.Str()
     created_by = fields.Str(default="")
