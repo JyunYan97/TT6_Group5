@@ -8,6 +8,7 @@ currency_col = db['currency']
 
 class Currency(Resource):
     
+    @jwt_required()
     def get(self, wallet_id):
 
         currency_list = currency_col.find({"wallet_id": wallet_id}, {'_id': 0})
