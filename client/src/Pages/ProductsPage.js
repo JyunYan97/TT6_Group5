@@ -21,15 +21,63 @@ const Products = () => {
  <th>Rate</th>
  </tr>
  </thead>
- <tbody>
- <tr>
- <td>CAD</td>
- <td>0.9225</td>
- </tr> 
- <tr>
- <td>CNH</td>
- <td>4.7868</td>
- </tr> 
+
+  <tbody>
+   <tr>
+   <td>CAD</td>
+   <td>0.9225</td>
+   </tr> 
+
+  <tr>
+  <td>CCNH</td>
+  <td>4.7868</td>
+  </tr>
+
+  <tr>
+  <td>CEUR</td>
+  <td>0.7086</td>
+  </tr>
+
+  <tr>
+  <td>CHKD</td>
+  <td>5.583</td>
+  </tr>
+
+  <tr>
+  <td>JPY</td>
+  <td>97.5303</td>
+  </tr>
+
+  <tr>
+  <td>NZD</td>
+  <td>1.1612</td>
+  </tr>
+
+  <tr>
+  <td>NOK</td>
+  <td>7.2912</td>
+  </tr>
+
+  <tr>
+  <td>GBP</td>
+  <td>0.5974</td>
+  </tr>
+
+  <tr>
+  <td>SEK</td>
+  <td>7.5168</td>
+  </tr>
+
+  <tr>
+  <td>THB</td>
+  <td>25.7275</td>
+  </tr>
+
+  <tr>
+  <td>USD</td>
+  <td>0.7113</td>
+  </tr>
+
  </tbody>
 </Table></Col>
         </Row>
