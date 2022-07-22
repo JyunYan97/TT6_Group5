@@ -5,16 +5,14 @@ import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { users } from './data'
 import { useNavigate } from 'react-router-dom';
-<<<<<<< HEAD
 import axios from '../../axiosAuth/api/axios'; 
 import AuthContext from '../../axiosAuth/context/AuthProvider'; 
 
 const LoginForm = () => {
     
   const errRef = useRef();
-  const LOGIN_URL = '/login'
+  const LOGIN_URL = '/api/auth/login'
   const { setAuth } = useContext(AuthContext);
   const [loggedInState, setLoggedInState] = useState(false)
   const [user, setUser] = useState('');
@@ -41,10 +39,12 @@ const LoginForm = () => {
                     withCredentials: true
                 }
             );
-            console.log(JSON.stringify(response?.data));
+
+           /*  console.log(JSON.stringify(response?.data)); */
+            console.log(response.data);
             
-            const accessToken = response?.data?.accessToken;
-            setAuth({ user, password, roles, accessToken });
+            /* const accessToken = response?.data?.accessToken; */
+            setAuth({ user, password/* , accessToken  */});
             setUser('');
             setPassword('');
             setSuccess(true);
